@@ -45,8 +45,10 @@ public final class R {
         public static final int icon32=0x7f020001;
         public static final int icon72=0x7f020002;
         public static final int launcher_icon=0x7f020003;
-        public static final int share_via_barcode=0x7f020004;
-        public static final int shopper_icon=0x7f020005;
+        public static final int options=0x7f020004;
+        public static final int paste=0x7f020005;
+        public static final int share_via_barcode=0x7f020006;
+        public static final int shopper_icon=0x7f020007;
     }
     public static final class id {
         /**  Messages IDs 

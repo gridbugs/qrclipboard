@@ -4,60 +4,91 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="#FF0000"
+    >
+
+
+
+
     
-    >
+	<SurfaceView android:id="@+id/preview"
+	            android:layout_width="fill_parent"
+	            android:layout_height="fill_parent"
+	            android:clickable="true"
+	            android:onClick="startScanning"
+	            />
 
 
 
 
-<SurfaceView android:id="@+id/preview"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:clickable="true"
-            android:onClick="startScanning"
-            />
-<View 
-    android:id="@+id/overlay"
-    android:background="#00FF0000"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    ></View>
-<SurfaceView android:id="@+id/display"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-           
-                        />
-<LinearLayout 
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:gravity="right"
-        
-    >
-    <!-- 
-<LinearLayout
-    android:id="@+id/button_container"
-    android:background="#FF000000"
-    android:layout_height="fill_parent"
-    android:layout_width="80dp"
-    > 
-    <LinearLayout
-        android:layout_height="20dp"
-        android:layout_width="fill_parent"
-        android:background="#FFFF0000"
-        android:layout_weight="1"
-        android
-        >
-     
-        
-    </LinearLayout>
-       
-    <LinearLayout
-        android:layout_height="20dp"
-        android:layout_width="fill_parent"
-        android:background="#FF00FF00"
-        android:layout_weight="1"
-        ></LinearLayout>   
-</LinearLayout> -->
-</LinearLayout>
+	<View android:id="@+id/overlay"
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    ></View>
 
+	<SurfaceView android:id="@+id/display"
+	            android:layout_width="fill_parent"
+	            android:layout_height="fill_parent"
+	         
+	            />
+<!-- 
+	<LinearLayout
+	    android:layout_width="fill_parent"
+	    android:layout_height="fill_parent"
+	    android:gravity="right"
+	    android:orientation="horizontal" >
+	   
+		<TableLayout
+		    android:id="@+id/button_container"
+		    android:layout_width="60dp"
+		    android:layout_height="fill_parent"
+		    
+		    android:background="#DD888888"
+		    android:orientation="vertical" >
+
+			<TableRow
+			    android:id="@+id/tableRow1"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content" 
+			    
+			    android:clickable="true"
+				    android:onClick="copyButtonClick"
+			    >
+
+				<QuickContactBadge
+				    android:id="@+id/copy_button"
+				    android:layout_width="60dp"
+				    android:layout_height="60dp"
+				    android:src="@drawable/options" 
+				    android:clickable="true"
+				    android:onClick="copyButtonClick"
+				    />
+				<Button 
+				    android:clickable="true"
+				    android:onClick="copyButtonClick"
+				    android:text=""
+				    />
+
+			</TableRow>
+
+			<TableRow
+			    android:id="@+id/tableRow2"
+			    android:layout_width="wrap_content"
+			    android:layout_height="wrap_content" 
+			    
+			    >
+				
+				<QuickContactBadge
+				    android:id="@+id/options_button"
+				    android:layout_width="60dp"
+				    android:layout_height="60dp"
+				    android:src="@drawable/paste"
+				    />
+
+			</TableRow>
+
+		    
+		</TableLayout>
+		
+	</LinearLayout>
+	 -->
 </RelativeLayout>
