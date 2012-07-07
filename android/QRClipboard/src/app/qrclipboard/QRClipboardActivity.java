@@ -197,8 +197,17 @@ public class QRClipboardActivity extends Activity {
     	
     }
     
+
     public void startScanning(View view) {
     	
+    	SurfaceView display = (SurfaceView) findViewById(R.id.display);
+        SurfaceHolder displayHolder = display.getHolder();
+        Canvas canvas = displayHolder.lockCanvas();
+        
+        canvas.drawARGB(255, 0, 255, 0);
+        
+        displayHolder.unlockCanvasAndPost(canvas);
+        
     }
   
     private int alpha = 0;
