@@ -23,6 +23,10 @@ function drawQR(str) {
     canvas.getContext('2d').fillStyle = 'rgb(0,0,0)';
     
     matrix.draw(canvas, 0, 0);
+
+    var resizer = document.getElementById("resizer");
+    resizer.style.width = matrix.pixelWidth + "px";
+    resizer.style.height = matrix.pixelWidth + "px";
     
 
 }
