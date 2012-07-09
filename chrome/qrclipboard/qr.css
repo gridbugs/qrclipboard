@@ -1,3 +1,7 @@
 textarea#sandbox {
     display:none;
 }
+
+body {
+    margin-right:-60px;
+}

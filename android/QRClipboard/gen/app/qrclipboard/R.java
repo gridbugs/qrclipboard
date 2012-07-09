@@ -159,8 +159,6 @@ public final class R {
         public static final int contents_phone=0x7f0a0021;
         public static final int contents_sms=0x7f0a0022;
         public static final int contents_text=0x7f0a0023;
-        public static final int generate=0x7f0a0079;
-        public static final int hello=0x7f0a0078;
         public static final int history_clear_one_history_text=0x7f0a0025;
         public static final int history_clear_text=0x7f0a0024;
         public static final int history_email_title=0x7f0a0026;
@@ -203,7 +201,6 @@ public final class R {
         public static final int msg_share_text=0x7f0a004b;
         public static final int msg_sure=0x7f0a004c;
         public static final int msg_unmount_usb=0x7f0a004d;
-        public static final int options=0x7f0a007a;
         public static final int preferences_actions_title=0x7f0a004e;
         public static final int preferences_bulk_mode_summary=0x7f0a004f;
         public static final int preferences_bulk_mode_title=0x7f0a0050;

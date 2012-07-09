@@ -1,9 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
-    <string name="hello">Hello World, QRClipboardActivity! string string string string string string</string>
     <string name="app_name">QRClipboard</string>
-	
-	<string name="generate">Generate</string>
-	<string name="options">Options</string>
 </resources>
