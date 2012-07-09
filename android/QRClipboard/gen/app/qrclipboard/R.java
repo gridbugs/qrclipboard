@@ -66,6 +66,7 @@ public final class R {
         public static final int display=0x7f090027;
         public static final int done_button=0x7f090021;
         public static final int encode_view=0x7f09001d;
+        public static final int flash=0x7f090026;
         public static final int format_text_view=0x7f090011;
         public static final int format_text_view_label=0x7f090010;
         public static final int help_contents=0x7f09001f;
@@ -76,7 +77,6 @@ public final class R {
         public static final int main_container=0x7f090024;
         public static final int meta_text_view=0x7f090017;
         public static final int meta_text_view_label=0x7f090016;
-        public static final int overlay=0x7f090026;
         public static final int page_number_view=0x7f09002b;
         public static final int preview=0x7f090025;
         public static final int preview_view=0x7f09000c;

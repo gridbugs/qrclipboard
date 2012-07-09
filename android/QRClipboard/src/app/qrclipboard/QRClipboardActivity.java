@@ -195,8 +195,7 @@ public class QRClipboardActivity extends Activity {
     private void stopPreview() {
 		camera.stopPreview();
 		previewing = false;
-		preview.setVisibility(View.VISIBLE);
-		display.setVisibility(View.INVISIBLE);
+		usePreview();
     	
     }
     
@@ -228,14 +227,16 @@ public class QRClipboardActivity extends Activity {
     	camera.setPreviewCallback(new PreviewScanner());
     	startPreview();
     	
+    	
+    	scanning = true;
+    	
     	Log.e("scan", "resume");
     	
     }
     
     private void displayQRCode(String str) {
     	
-    	display.setVisibility(View.VISIBLE);
-    	preview.setVisibility(View.INVISIBLE);
+    	useDisplay();
     	
     	//preview.setBackgroundColor(Color.argb(0x88, 0, 0, 0));
     	
@@ -362,7 +363,7 @@ public class QRClipboardActivity extends Activity {
     }
     
     private void setOverlay(int bright) {
-    	View overlay = (View) findViewById(R.id.display);
+    	View overlay = (View) findViewById(R.id.flash);
     	overlay.setBackgroundColor((bright << 24) | 0xFFFFFF);
     	
     }
@@ -381,8 +382,7 @@ public class QRClipboardActivity extends Activity {
     }
     
     private void enablePreview() {
-    	preview.setVisibility(View.VISIBLE);
-    	display.setVisibility(View.INVISIBLE);
+    	usePreview();
     	
     	preview = (SurfaceView) findViewById(R.id.preview);
         previewHolder = preview.getHolder();
@@ -390,6 +390,16 @@ public class QRClipboardActivity extends Activity {
         previewHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
         
         Log.e("code", "111");
+    }
+    
+    private void usePreview() {
+    	preview.setVisibility(View.VISIBLE);
+    	display.setVisibility(View.INVISIBLE);
+    }
+    
+    private void useDisplay() {
+    	preview.setVisibility(View.INVISIBLE);
+    	display.setVisibility(View.VISIBLE);
     }
     
     @Override
@@ -401,7 +411,7 @@ public class QRClipboardActivity extends Activity {
     			displayClipboard();
     			scanning = false;
     		} else {
-    			enablePreview();
+    			usePreview();
     			scanning = true;
     		}
     		
