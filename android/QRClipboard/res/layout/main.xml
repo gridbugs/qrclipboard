@@ -17,7 +17,7 @@
 
 
 
-	<SurfaceView android:id="@+id/display"
+	<SurfaceView android:id="@+id/qr_display"
 	            android:layout_width="fill_parent"
 	            android:layout_height="fill_parent"
 	         

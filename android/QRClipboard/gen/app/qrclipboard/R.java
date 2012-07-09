@@ -63,7 +63,6 @@ public final class R {
         public static final int decode=0x7f090001;
         public static final int decode_failed=0x7f090002;
         public static final int decode_succeeded=0x7f090003;
-        public static final int display=0x7f090026;
         public static final int done_button=0x7f090021;
         public static final int encode_view=0x7f09001d;
         public static final int flash_overlay=0x7f090027;
@@ -80,6 +79,7 @@ public final class R {
         public static final int page_number_view=0x7f09002b;
         public static final int preview=0x7f090025;
         public static final int preview_view=0x7f09000c;
+        public static final int qr_display=0x7f090026;
         public static final int query_button=0x7f090029;
         public static final int query_text_view=0x7f090028;
         public static final int quit=0x7f090005;
