@@ -63,10 +63,10 @@ public final class R {
         public static final int decode=0x7f090001;
         public static final int decode_failed=0x7f090002;
         public static final int decode_succeeded=0x7f090003;
-        public static final int display=0x7f090027;
+        public static final int display=0x7f090026;
         public static final int done_button=0x7f090021;
         public static final int encode_view=0x7f09001d;
-        public static final int flash=0x7f090026;
+        public static final int flash_overlay=0x7f090027;
         public static final int format_text_view=0x7f090011;
         public static final int format_text_view_label=0x7f090010;
         public static final int help_contents=0x7f09001f;

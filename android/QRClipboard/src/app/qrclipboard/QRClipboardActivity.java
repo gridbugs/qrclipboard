@@ -12,11 +12,9 @@ import com.google.zxing.qrcode.*;
 
 
 import com.google.zxing.BarcodeFormat;
-import com.google.zxing.Binarizer;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.ChecksumException;
 import com.google.zxing.FormatException;
-import com.google.zxing.LuminanceSource;
 import com.google.zxing.NotFoundException;
 import com.google.zxing.Result;
 import com.google.zxing.WriterException;
@@ -26,25 +24,12 @@ import android.app.Activity;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Point;
 import android.hardware.Camera;
-import android.hardware.Camera.Size;
 import android.os.Bundle;
-import android.view.Display;
 import android.view.KeyEvent;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager.LayoutParams;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.view.animation.LayoutAnimationController;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
-import android.widget.QuickContactBadge;
 
 
 import android.text.ClipboardManager;
@@ -59,12 +44,10 @@ public class QRClipboardActivity extends Activity {
 	private SurfaceView preview;
 	private SurfaceHolder previewHolder;
 	
-	private boolean previewing = false;
 	private boolean scanning =  true;
 	
 	private QRCodeReader reader;
 	
-	private LinearLayout optionsContainer;
 	
 	SurfaceView display;
 	SurfaceHolder displayHolder;
@@ -81,7 +64,7 @@ public class QRClipboardActivity extends Activity {
 		
 		@Override
 		public void surfaceCreated(SurfaceHolder arg0) {
-			// TODO Auto-generated method stub
+			
 			
 		}
 		 
@@ -100,31 +83,11 @@ public class QRClipboardActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        /*
-        Display display = getWindowManager().getDefaultDisplay();
-        int height = display.getHeight();
-        Log.e("height", Integer.valueOf(height).toString());
-        int buttonWidth = height / 2;
-        
-        //QuickContactBadge copyButton = (QuickContactBadge) findViewById(R.id.copy_button);
-        QuickContactBadge optionsButton = (QuickContactBadge) findViewById(R.id.options_button);
-        
-        //ViewGroup.LayoutParams params = copyButton.getLayoutParams();
-        //params.height = buttonWidth;
-        //copyButton.setLayoutParams(params);
-       
-        params = optionsButton.getLayoutParams();
-        params.height = buttonWidth;
-        optionsButton.setLayoutParams(params);
-       
-        optionsContainer = (LinearLayout) findViewById(R.id.button_container);
-        //optionsContainer.setVisibility(View.INVISIBLE);
-         */
+
         
         display = (SurfaceView) findViewById(R.id.display);
         displayHolder = display.getHolder();
-        
-        Log.e("scan", "hello");
+
         
         formatter = new Formatter();
         
@@ -188,13 +151,11 @@ public class QRClipboardActivity extends Activity {
     
     private void startPreview() {
 		camera.startPreview();
-		previewing = true;
     	
     }
     
     private void stopPreview() {
 		camera.stopPreview();
-		previewing = false;
 		usePreview();
     	
     }
@@ -236,10 +197,7 @@ public class QRClipboardActivity extends Activity {
     
     private void displayQRCode(String str) {
     	
-    	useDisplay();
-    	
-    	//preview.setBackgroundColor(Color.argb(0x88, 0, 0, 0));
-    	
+    	useDisplay();    	
     	
         Canvas canvas = displayHolder.lockCanvas();        
         
@@ -285,12 +243,7 @@ public class QRClipboardActivity extends Activity {
         displayHolder.unlockCanvasAndPost(canvas);
     }
     
-    public void startScanning(View view) {
-    	
-    	displayQRCode("hello");
-        
-    }
-    
+
     public void copyButtonClick(View view) {
     	displayClipboard();
     	Log.e("copy", "copy");
@@ -351,7 +304,6 @@ public class QRClipboardActivity extends Activity {
 				return;
 			}
 			
-			//scanResult = res.getText();
 			storeInClipboard(res.getText());
 			Log.e("scan", "success");
 			
@@ -363,7 +315,7 @@ public class QRClipboardActivity extends Activity {
     }
     
     private void setOverlay(int bright) {
-    	View overlay = (View) findViewById(R.id.flash);
+    	View overlay = (View) findViewById(R.id.flash_overlay);
     	overlay.setBackgroundColor((bright << 24) | 0xFFFFFF);
     	
     }
@@ -374,23 +326,13 @@ public class QRClipboardActivity extends Activity {
     }
     
     private void displayClipboard() {
-    	//stopPreview();
     	ClipboardManager cm =  (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
     	CharSequence clipboardData = cm.getText();
     	String clipboardString = clipboardData.toString();
     	displayQRCode(clipboardString);
     }
     
-    private void enablePreview() {
-    	usePreview();
-    	
-    	preview = (SurfaceView) findViewById(R.id.preview);
-        previewHolder = preview.getHolder();
-    	previewHolder.addCallback(callback);
-        previewHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
-        
-        Log.e("code", "111");
-    }
+
     
     private void usePreview() {
     	preview.setVisibility(View.VISIBLE);
