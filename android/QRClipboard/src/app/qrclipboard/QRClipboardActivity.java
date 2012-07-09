@@ -44,6 +44,7 @@ public class QRClipboardActivity extends Activity {
 	private SurfaceHolder previewHolder;
 	
 	private boolean scanning =  true;
+	private boolean previewing = true;
 	
 	private QRCodeReader reader;
 	
@@ -69,6 +70,22 @@ public class QRClipboardActivity extends Activity {
          */
         qrDisplay = (SurfaceView) findViewById(R.id.qr_display);
         qrDisplayHolder = qrDisplay.getHolder();
+        qrDisplayHolder.addCallback(new SurfaceHolder.Callback() {
+			
+			@Override
+			public void surfaceDestroyed(SurfaceHolder holder) {
+			}
+			
+			@Override
+			public void surfaceCreated(SurfaceHolder holder) {
+				displayClipboard();
+			}
+			
+			@Override
+			public void surfaceChanged(SurfaceHolder holder, int format, int width,
+					int height) {
+			}
+		});
         
         /*
          * This view is used to provide the flash on a code read.
@@ -92,13 +109,10 @@ public class QRClipboardActivity extends Activity {
 				@Override
 				public void surfaceDestroyed(SurfaceHolder arg0) {
 					Log.e("scan", "destroyed");
-					
 				}
 				
 				@Override
 				public void surfaceCreated(SurfaceHolder arg0) {
-					
-					
 				}
 				 
 				@Override
@@ -112,6 +126,7 @@ public class QRClipboardActivity extends Activity {
         		
         
         previewHolder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+        
     }
     
     /**
@@ -142,8 +157,12 @@ public class QRClipboardActivity extends Activity {
     	return result;
     }
     
+    /**
+     * Set up the camera to fit the screen.
+     * @param width
+     * @param height
+     */
     private void configureCamera(int width, int height) {
-    	
     	
     	try {
 			camera.setPreviewDisplay(previewHolder);
@@ -191,6 +210,8 @@ public class QRClipboardActivity extends Activity {
     	camera.release();
     	camera = null;
     	
+    
+    	
     	super.onPause();
     }
     
@@ -203,8 +224,17 @@ public class QRClipboardActivity extends Activity {
     	camera.setPreviewCallback(new PreviewScanner());
     	startPreview();
     	
+    	if (!previewing) {
+    		displayClipboard();
+    	}
     	
-    	scanning = true;
+    	if (qrDisplay.getVisibility() == View.VISIBLE) {
+    		Log.e("code", "qrDisplay is visible");
+    	}
+    	
+    	if (preview.getVisibility() == View.VISIBLE) {
+    		Log.e("code", "preview is visible");
+    	}
     	
     	Log.e("scan", "resume");
     	
@@ -215,13 +245,16 @@ public class QRClipboardActivity extends Activity {
      * @param str
      * The string to encode.
      */
-    private void displayQRCode(String str) {
+    private boolean displayQRCode(String str) {
     	
-    	// display the qr code display
-    	useQRDisplay();    	
+
     	
-    	// the canvas beloning to the qr code display
-        Canvas canvas = qrDisplayHolder.lockCanvas();        
+    	// the canvas belonging to the qr code display
+        Canvas canvas = qrDisplayHolder.lockCanvas();      
+        
+        if (canvas == null) {
+        	return false;
+        }
         
         // get the canvas dimensions
         int canvasWidth = canvas.getWidth();
@@ -235,7 +268,7 @@ public class QRClipboardActivity extends Activity {
         try {
 			code = encoder.encode(str, BarcodeFormat.QR_CODE, canvasWidth, canvasHeight);
 		} catch (WriterException e) {
-			return;
+			return false;
 			
 		}
         
@@ -279,6 +312,8 @@ public class QRClipboardActivity extends Activity {
          * display the qr code.
          */
         qrDisplayHolder.unlockCanvasAndPost(canvas);
+        
+        return true;
     }
     
     // the alpha value of the flash overlay
@@ -414,6 +449,7 @@ public class QRClipboardActivity extends Activity {
     	ClipboardManager cm =  (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
     	CharSequence clipboardData = cm.getText();
     	String clipboardString = clipboardData.toString();
+    	
     	displayQRCode(clipboardString);
     }
 
@@ -421,6 +457,7 @@ public class QRClipboardActivity extends Activity {
      * Hides the qr code display and displays the preview.
      */
     private void usePreview() {
+    	previewing = true;
     	preview.setVisibility(View.VISIBLE);
     	qrDisplay.setVisibility(View.INVISIBLE);
     }
@@ -429,6 +466,7 @@ public class QRClipboardActivity extends Activity {
      * Hides the preview and displays the qr display
      */
     private void useQRDisplay() {
+    	previewing = false;
     	preview.setVisibility(View.INVISIBLE);
     	qrDisplay.setVisibility(View.VISIBLE);
     }
@@ -444,7 +482,7 @@ public class QRClipboardActivity extends Activity {
      
     	if (keyCode == KeyEvent.KEYCODE_MENU) {
     		if (scanning) {
-    			displayClipboard();
+    			useQRDisplay();
     			scanning = false;
     		} else {
     			usePreview();

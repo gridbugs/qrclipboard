@@ -3,7 +3,6 @@
     android:id="@+id/main_container"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#FF0000"
     >
 
 
@@ -20,7 +19,7 @@
 	<SurfaceView android:id="@+id/qr_display"
 	            android:layout_width="fill_parent"
 	            android:layout_height="fill_parent"
-	         
+	            android:visibility="invisible"
 	            />
 	
 	<View android:id="@+id/flash_overlay"
