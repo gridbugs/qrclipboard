@@ -1,6 +1,5 @@
 package app.qrclipboard;
 import java.io.IOException;
-import java.util.Formatter;
 
 
 import com.google.zxing.client.android.PlanarYUVLuminanceSource;
@@ -52,7 +51,6 @@ public class QRClipboardActivity extends Activity {
 	SurfaceView display;
 	SurfaceHolder displayHolder;
 	
-	Formatter formatter;
 	
 	SurfaceHolder.Callback callback = new SurfaceHolder.Callback() {
 		
@@ -89,12 +87,8 @@ public class QRClipboardActivity extends Activity {
         displayHolder = display.getHolder();
 
         
-        formatter = new Formatter();
         
         reader = new QRCodeReader();
-        
-        
-       
         
         preview = (SurfaceView) findViewById(R.id.preview);
         previewHolder = preview.getHolder();
@@ -116,8 +110,6 @@ public class QRClipboardActivity extends Activity {
     				bestArea = area;
     			}
     		}
-    		
-    		
     	}
     	
     	return result;
@@ -143,8 +135,6 @@ public class QRClipboardActivity extends Activity {
     	
     	camera.setParameters(params);
     	
-    	Log.e("configureCamera", 
-    			formatter.format("%d %d", size.width, size.height).toString());
     	
     	
     }
@@ -246,7 +236,6 @@ public class QRClipboardActivity extends Activity {
 
     public void copyButtonClick(View view) {
     	displayClipboard();
-    	Log.e("copy", "copy");
     }
   
     private int alpha = 0;
@@ -358,8 +347,6 @@ public class QRClipboardActivity extends Activity {
     		}
     		
             return true;
-        } else if (keyCode == KeyEvent.KEYCODE_HOME) {
-        	return super.onKeyDown(KeyEvent.KEYCODE_BACK, event);
         }
         
         
