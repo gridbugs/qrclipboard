@@ -1,3 +1,4 @@
+
 function drawQR(str) {
 
     var canvas = document.getElementById("canvas");
@@ -32,6 +33,7 @@ function drawQR(str) {
 }
 
 function run() {
+
     var clipboardData = paste();
     drawQR(clipboardData);
 }
@@ -58,3 +60,5 @@ function paste(str) {
     sandboxElement.style.display = "none";
     return result;
 }
+
+document.addEventListener('DOMContentLoaded', run);

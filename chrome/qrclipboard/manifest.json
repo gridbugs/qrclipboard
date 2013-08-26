@@ -1,24 +1,23 @@
 {
-  "name": "QR Clipboard",
-  "version": "1.0",
   "manifest_version": 2,
+  "name": "QR Clipboard",
+  "version": "1.1",
   "description": "Display the clipboard contents as a QR code",
+
+  "permissions": [
+        "clipboardRead",
+        "clipboardWrite"
+    ],
   "browser_action": {
           "default_icon": "icon32.png",
-          "popup": "qr.html"
+          "default_popup": "qr.html"
     },
 
     "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "css": ["qr.css"],
-      "js": ["qr.js", "jsqr-0.2-min.js", "jquery-1.7.2.min.js"]
+      "css": ["qr.css"]
     }],
-    "permissions": [
-        "clipboardRead",
-        "clipboardWrite"
-
-  ],
   "icons": {
         "32": "icon32.png"
   }
