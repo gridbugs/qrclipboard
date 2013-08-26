@@ -1,6 +1,7 @@
 {
   "name": "QR Clipboard",
   "version": "1.0",
+  "manifest_version": 2,
   "description": "Display the clipboard contents as a QR code",
   "browser_action": {
           "default_icon": "icon32.png",
@@ -16,9 +17,9 @@
     "permissions": [
         "clipboardRead",
         "clipboardWrite"
-    
+
   ],
   "icons": {
-        "32": "icon32.png" 
+        "32": "icon32.png"
   }
 }
